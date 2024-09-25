@@ -14,15 +14,9 @@ jobs:
       uses: azure/setup-kubectl@v3   
     
     - name: Set Kubeconfig
-      uses: actions-hub/kubectl@master
-      env:
-        KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+      uses: azure/k8s-set-context@v4
       with:
-        args: get pods
-      
-      #uses: azure/k8s-set-context@v4
-      #with:
-      # kubeconfig: ${{ secrets.KUBE_CONFIG }}
+        kubeconfig: ${{ secrets.KUBECONFIG }}
       
     - name: Deploy manifests
       run: |
