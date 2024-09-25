@@ -4,6 +4,7 @@ metadata:
   labels:
     app: result
   name: result
+  namespace: voting-app
 spec:
   replicas: 1
   selector:
@@ -15,7 +16,7 @@ spec:
         app: result
     spec:
       containers:
-      - image: dockersamples/examplevotingapp_result
+      - image: jricho/voting:result
         name: result
         ports:
         - containerPort: 80
