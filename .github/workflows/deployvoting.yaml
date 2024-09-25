@@ -1,0 +1,35 @@
+name: deploy
+
+on: 
+  push:
+    branches:
+      - main
+
+jobs: 
+  deploy_job:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v4
+
+    - name: Install kubectl cli
+      uses: azure/setup-kubectl@v3
+      with:
+        version: 
+    
+    - name: Set Kubeconfig
+      uses: azure/k8s-set-context@v4
+      with:
+        method: kubeconfig
+        kubeconfig: ${{ secrets.KUBECONFIG }}
+
+    - name: Get Kubernetes cluster info
+      run: |
+        kubectl version --short
+        echo ----------------------------------------------------
+        kubectl get nodes
+
+    - name: Deploy manifests
+      run: |
+        kubectl apply -f k8s-specifications/
