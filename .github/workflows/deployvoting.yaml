@@ -24,8 +24,6 @@ jobs:
 
     - name: Get Kubernetes cluster info
       run: |
-        kubectl version --short
-        echo ----------------------------------------------------
         kubectl get nodes
 
     - name: Deploy manifests
