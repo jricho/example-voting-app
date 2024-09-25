@@ -27,4 +27,4 @@ jobs:
 
     - name: Deploy manifests
       run: |
-        kubectl apply -f k8s-specifications/vote-deployment.yaml
+        kubectl apply -f k8s-specifications/vote-deployment.yaml --validate=false
