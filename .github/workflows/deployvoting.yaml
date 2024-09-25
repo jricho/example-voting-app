@@ -18,9 +18,8 @@ jobs:
     - name: Set Kubeconfig
       uses: azure/k8s-set-context@v4
       with:
-        method: kubeconfig
-        kubeconfig: ${{ secrets.KUBECONFIG }}
-
+        KUBECONFIG: ${{ secrets.KUBECONFIG }}
+      
     - name: Get Kubernetes cluster info
       run: |
         kubectl get nodes
