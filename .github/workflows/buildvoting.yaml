@@ -11,13 +11,13 @@ jobs:
     strategy:
       matrix:
         include:
-          - image: jricho/vote:latest
+          - image: jricho/example-voting-app
             dockerfile: vote/Dockerfile
             context: ./vote
-          - image: jricho/result:latest
+          - image: jricho/example-voting-app
             dockerfile: result/Dockerfile
             context: ./result
-          - image: jricho/worker:latest
+          - image: jricho/example-voting-app
             dockerfile: worker/Dockerfile
             context: ./worker
     steps:
