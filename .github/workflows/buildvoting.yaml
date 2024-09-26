@@ -13,10 +13,13 @@ jobs:
         include:
           - image: jricho/example-voting-app/vote
             dockerfile: vote/Dockerfile
+            context: ./vote
           - image: jricho/exmaple-voting-app/result
             dockerfile: result/Dockerfile
+            context: ./result
           - image: jricho/exmaple-voting-app/worker
             dockerfile: worker/Dockerfile
+            context: ./worker
     steps:
       -
         name: Checkout
@@ -43,9 +46,8 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v6
         with:
-          context: .
+          context: ${{ matrix.context }}
           file: ${{ matrix.dockerfile }}
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          
